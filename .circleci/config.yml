@@ -50,7 +50,7 @@ jobs:
 
       - run:
           name: docker build
-          command: docker build --build-arg API_URL=$API_URL -t cwc329/podcastify-ui:latest .
+          command: docker build --build-arg REACT_APP_API_URL=$API_URL -t cwc329/podcastify-ui:latest .
 
       - run:
           name: docker publish
