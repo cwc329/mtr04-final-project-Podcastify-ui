@@ -45,6 +45,10 @@ jobs:
             docker login -u cwc329 -p $DOCKERHUB_PASSWORD
 
       - run:
+        name: echo api url
+        command: echo $API_URL
+
+      - run:
           name: docker build
           command: docker build --build-arg API_URL=$API_URL -t cwc329/podcastify-ui:latest .
 
