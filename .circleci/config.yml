@@ -45,15 +45,15 @@ jobs:
             docker login -u cwc329 -p $DOCKERHUB_PASSWORD
 
       - run:
-          name: echo api url
-          command: echo $API_URL
+          name: set .env
+          command: |
+            echo "REACT_APP_API_URL=${REACT_APP_API_URL}" > .env
+            cat .env
 
       - run:
           name: docker build
           command: |
-            echo "REACT_APP_API_URL=${REACT_APP_API_URL}" > .env
-            docker build \
-            --build-arg REACT_APP_API_URL -t cwc329/podcastify-ui:latest .
+            docker build -t cwc329/podcastify-ui:latest .
 
       - run:
           name: docker publish
