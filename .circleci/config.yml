@@ -23,7 +23,7 @@ jobs:
     docker:
       - image: circleci/node:12
         auth:
-          username: cwc329
+          username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
     # Then run your tests!
     # CircleCI will report the results back to your VCS provider.
@@ -42,7 +42,7 @@ jobs:
       - run:
           name: docker login
           command: |
-            docker login -u cwc329 -p $DOCKERHUB_PASSWORD
+            docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 
       - run:
           name: set .env
@@ -53,11 +53,11 @@ jobs:
       - run:
           name: docker build
           command: |
-            docker build -t cwc329/podcastify-ui:latest .
+            docker build -t $DOCKERHUB_USER/podcastify-ui:latest .
 
       - run:
           name: docker publish
-          command: docker push cwc329/podcastify-ui
+          command: docker push $DOCKERHUB_USER/podcastify-ui
   # build:
 
 workflows:
